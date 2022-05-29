@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import Header from './Header'
 
@@ -9,7 +10,18 @@ const Add = () => {
 
   const submitValues=()=>{
      const data={"title":title,"category":categ,"description":desc,"prepared":prepared}
-     console.log(data)
+     axios.post("http://localhost:7000/api/addrecepie",data).then((response)=>{
+         console.log(response.data)
+         if(response.data.status=="success")
+         {
+             alert("recepie inserted successfully")
+         }
+         else
+         {
+alert("recepie insertion failed")
+         }
+     })
+     
   }
   return (
     <div>
